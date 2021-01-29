@@ -16,6 +16,7 @@ public enum Mensagem {
 	EMAIL_INVALIDO("email_invalido"),
 	OPERACAO_REALIZADA_SUCESSSO("operacao_realizada_sucessso"), 
 	
+	RECURSO_NAO_ENCONTRADO("recurso_nao_encontrado"),
 	CLIENTE_SEM_PREMISSAO("cliente_sem_premissao"),
 	;
 	

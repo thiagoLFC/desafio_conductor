@@ -1,5 +1,7 @@
 package br.com.conductor.desafio.controller.swagger;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import br.com.conductor.desafio.entidade.Cliente;
@@ -27,7 +29,7 @@ public interface IClienteController {
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class)))) })	
-	 ResponseEntity<Object> findAll();
+	 List<Cliente> findAll();
 	 
 	 @Operation(summary = "Cadastrar um cliente.", description = "Cadastra o cliente")
 	    @ApiResponses(value = {
@@ -45,7 +47,7 @@ public interface IClienteController {
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class)))) })
-	 ResponseEntity<Object> findById(Integer id);
+	 Cliente findById(Integer id);
 	 
 	 @Operation(summary = "Atualizar os dado de um cliente.", description = "Atualizar o cliente")
 	    @ApiResponses(value = {

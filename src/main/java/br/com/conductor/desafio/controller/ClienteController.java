@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.conductor.desafio.comum.exception.DesafioConductorRuntimeException;
 import br.com.conductor.desafio.controller.swagger.IClienteController;
 import br.com.conductor.desafio.entidade.Cliente;
+import br.com.conductor.desafio.enus.Mensagem;
 import br.com.conductor.desafio.service.ClienteService;
 
 /**
@@ -34,16 +36,12 @@ public class ClienteController extends DesafioConductorController implements ICl
 	 */
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<Object> findAll() {
-		try {
-			List<Cliente> clientes = clienteService.findAll();
-			if(clientes.isEmpty()) {
-				return ok(clientes , HttpStatus.NOT_FOUND);
-			} else {
-				return ok(clientes, HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			return processarErro(e);
+	public List<Cliente> findAll() {
+		List<Cliente> clientes = clienteService.findAll();
+		if(clientes.isEmpty()) {
+			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+		} else {
+			return clientes;
 		}
 	}
 	
@@ -54,12 +52,8 @@ public class ClienteController extends DesafioConductorController implements ICl
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.POST , consumes = {"application/json"})
 	public ResponseEntity<Object> create(@RequestBody Cliente cliente) {
-		try {
-			clienteService.create(cliente);
-			return ok(HttpStatus.CREATED);
-		} catch (Exception e) {
-			return processarErro(e);
-		}
+		clienteService.create(cliente);
+		return ok(HttpStatus.CREATED);
 	}
 	
 	/**
@@ -69,16 +63,12 @@ public class ClienteController extends DesafioConductorController implements ICl
 	 */
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
-		try {
-			Cliente cliente = clienteService.findById(id);
-			if(cliente == null) {
-				return ok(cliente, HttpStatus.NOT_FOUND);	
-			} else {
-				return ok(cliente, HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			return processarErro(e);
+	public Cliente findById(@PathVariable("id") Integer id) {
+		Cliente cliente = clienteService.findById(id);
+		if(cliente == null) {
+			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+		} else {
+			return cliente;
 		}
 	}
 	
@@ -89,12 +79,8 @@ public class ClienteController extends DesafioConductorController implements ICl
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT , consumes = {"application/json"})
 	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody Cliente cliente) {
-		try {
-			clienteService.update(id, cliente);
-			return ok(HttpStatus.OK);
-		} catch (Exception e) {
-			return processarErro(e);
-		}
+		clienteService.update(id, cliente);
+		return ok(HttpStatus.OK);
 	}
 
 }

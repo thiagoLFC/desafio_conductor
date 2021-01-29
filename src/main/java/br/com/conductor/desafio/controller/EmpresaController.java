@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.conductor.desafio.comum.exception.DesafioConductorRuntimeException;
 import br.com.conductor.desafio.controller.swagger.IEmpresaController;
 import br.com.conductor.desafio.entidade.Empresa;
+import br.com.conductor.desafio.enus.Mensagem;
 import br.com.conductor.desafio.service.EmpresaService;
 
 /**
@@ -34,16 +36,12 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	 */
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<Object> findAll() {
-		try {
-			List<Empresa> clientes = empresaService.findAll();
-			if(clientes.isEmpty()) {
-				return ok(clientes , HttpStatus.NOT_FOUND);
-			} else {
-				return ok(clientes, HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			return processarErro(e);
+	public List<Empresa> findAll() {
+		List<Empresa> empresas = empresaService.findAll();
+		if(empresas.isEmpty()) {
+			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+		} else {
+			return empresas;
 		}
 	}
 	
@@ -54,12 +52,8 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	@Override
 	@RequestMapping(value = "", method = RequestMethod.POST , consumes = {"application/json"})
 	public ResponseEntity<Object> create(@RequestBody Empresa empresa) {
-		try {
-			empresaService.create(empresa);
-			return ok(HttpStatus.CREATED);
-		} catch (Exception e) {
-			return processarErro(e);
-		}
+		empresaService.create(empresa);
+		return ok(HttpStatus.CREATED);
 	}
 	
 	/**
@@ -69,16 +63,12 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	 */
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
-		try {
-			Empresa empresa = empresaService.findById(id);
-			if(empresa == null) {
-				return ok(empresa, HttpStatus.NOT_FOUND);	
-			} else {
-				return ok(empresa, HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			return processarErro(e);
+	public Empresa findById(@PathVariable("id") Integer id) {
+		Empresa empresa = empresaService.findById(id);
+		if(empresa == null) {
+			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+		} else {
+			return empresa;
 		}
 	}
 	
@@ -89,12 +79,8 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT , consumes = {"application/json"})
 	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody Empresa empresa) {
-		try {
-			empresaService.update(id, empresa);
-			return ok(HttpStatus.OK);
-		} catch (Exception e) {
-			return processarErro(e);
-		}
+		empresaService.update(id, empresa);
+		return ok(HttpStatus.OK);
 	}
 
 }

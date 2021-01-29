@@ -24,7 +24,7 @@ public class ConfigBDRoutingDataSource extends AbstractRoutingDataSource {
     protected Object determineCurrentLookupKey() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if(attr == null) {
-        	return Constantes.BD_CLIENTES_1;
+        	return Constantes.BD_CLIENTES;
         } else {
         	String usuarioRequest = attr.getRequest().getHeader("user-permission");
         	return getBdByUsuarioRequest(usuarioRequest);

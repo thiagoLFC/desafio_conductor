@@ -1,7 +1,6 @@
 package br.com.conductor.desafio.controller.swagger;
 
-import org.springframework.http.ResponseEntity;
-
+import br.com.conductor.desafio.entidade.Monitoracao;
 import br.com.conductor.desafio.enus.TipoMonitoracao;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -27,7 +26,7 @@ public interface IMonitoracaoController {
          content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
          content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class))))  })	
-	 ResponseEntity<Object> findAll();
+	 Monitoracao findAll();
 	 
 	 @Operation(summary = "Apresenta o monitoramento de um determinado recurso do container docker.", description = "Monitoramento do recurso do container docker")
 	    @ApiResponses(value = {
@@ -37,5 +36,5 @@ public interface IMonitoracaoController {
       content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
       content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class)))) })	
-	 ResponseEntity<Object> findByTipoMonitoracao(TipoMonitoracao tipoMonitoracao);
+	 Monitoracao findByTipoMonitoracao(TipoMonitoracao tipoMonitoracao);
 }

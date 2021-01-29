@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.com.conductor.desafio.comum.MensagemLoader;
-import br.com.conductor.desafio.comum.exception.DesafioConductorRuntimeException;
-import br.com.conductor.desafio.controller.swagger.RetornoNegocio;
 
 /**
  * Classe para tratar as informacoes comuns das controllers
@@ -26,14 +24,4 @@ public abstract class DesafioConductorController {
 		return new ResponseEntity<Object>(null , status);
 	}
 	
-	protected ResponseEntity<Object> processarErro(Exception e) {
-		if(e instanceof DesafioConductorRuntimeException) {
-			return new ResponseEntity<Object>(new RetornoNegocio(HttpStatus.BAD_REQUEST , e.getMessage()) , HttpStatus.BAD_REQUEST);
-		} else if(e.getCause() instanceof DesafioConductorRuntimeException) {
-			return new ResponseEntity<Object>(new RetornoNegocio(HttpStatus.BAD_REQUEST , e.getCause().getMessage()) , HttpStatus.BAD_REQUEST);
-		} else {
-			return new ResponseEntity<Object>(new RetornoNegocio(HttpStatus.INTERNAL_SERVER_ERROR , e.getCause().getMessage()) , HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
 }
