@@ -1,0 +1,219 @@
+{
+	"variables": [],
+	"info": {
+		"name": "DesafioConductor",
+		"_postman_id": "6562a9a1-ab8b-5d59-1d22-8569800aa462",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Endpoints Clientes",
+			"description": "",
+			"item": [
+				{
+					"name": "Consultar Cliente",
+					"request": {
+						"url": "localhost:8080/clientes",
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Cliente por id",
+					"request": {
+						"url": "localhost:8080/clientes/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Cliente",
+					"request": {
+						"url": "localhost:8080/clientes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"nome\": \"Jejeh\",\n    \"cpf\": \"00040615128\",\n    \"email\": \"44444@4.com\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"url": "localhost:8080/clientes/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"nome\": \"Jejeh\",\n    \"cpf\": \"00040615128\",\n    \"email\": \"44444@4.com\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Endpoints Empresas",
+			"description": "",
+			"item": [
+				{
+					"name": "Criar empresa",
+					"request": {
+						"url": "localhost:8080/empresas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"nomeFanstasia\": \"Empresa dos sonhos\",\n    \"cnpj\": \"78956214500024\",\n    \"endereco\": \"QE 36 conjunto B casa 66\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar empresa",
+					"request": {
+						"url": "localhost:8080/empresas/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"nomeFanstasia\": \"Empresa dos sonhos2\",\n    \"cnpj\": \"78956214500024\",\n    \"endereco\": \"QE 36 conjunto B casa 66\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar empresa",
+					"request": {
+						"url": "localhost:8080/empresas",
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar empresa por id",
+					"request": {
+						"url": "localhost:8080/empresas/22",
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Monitoracao",
+			"description": "",
+			"item": [
+				{
+					"name": "Consultar monitoração",
+					"request": {
+						"url": "localhost:8080/monitoracoes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar monitoração por tipo",
+					"request": {
+						"url": "localhost:8080/monitoracoes/CPU",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
