@@ -56,5 +56,14 @@ public interface IEmpresaController {
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
          content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class))))})
 	 ResponseEntity<Object> update(Integer id, Empresa empresa);
+	 
+	 @Operation(summary = "Remover uma empresa.", description = "Remove uma empresa")
+	    @ApiResponses(value = {
+	        @ApiResponse(responseCode = "200", description = "Operação realizada com sucesso!"),
+	        @ApiResponse(responseCode = "400", description = "Erro negocial durante operação", 
+      content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
+	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
+      content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class)))) })	
+	 void delete(Integer id);
 
 }

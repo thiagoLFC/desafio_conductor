@@ -84,6 +84,16 @@ public class EmpresaService extends DesafioConductorService {
 		atualizarDadosEmpresaBd(empresaBd , empresa);
 		empresaRepository.save(empresaBd);
 	}
+	
+	/**
+	 * Metodo para remover uma empresa
+	 * @param id id da empresa
+	 */
+	@Transactional(value = TxType.REQUIRED)
+	public void delete(Integer id) {
+		Empresa empresaBd = hasEmpresaById(id);
+		empresaRepository.delete(empresaBd);
+	}
 
 	/**
 	 * Metodo para verificar os atributos que serao atualizados na entidade

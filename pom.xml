@@ -61,6 +61,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- dependencias de terceiros -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -78,13 +84,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>7.5.2</version>
 		</dependency>
-
 
 	</dependencies>
 

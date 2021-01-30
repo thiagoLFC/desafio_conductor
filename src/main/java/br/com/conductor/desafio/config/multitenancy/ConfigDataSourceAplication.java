@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import br.com.conductor.desafio.comum.Constantes;
-
 @Component
 public class ConfigDataSourceAplication {
 	
@@ -32,16 +30,10 @@ public class ConfigDataSourceAplication {
 	public void migrate() {
 		for (Entry<String, ConfigApplicationDatabase> dataSource : databaseConfigurations.getConfigurations().entrySet()) {
 			ConfigApplicationDatabase config = dataSource.getValue();
-			if(!isBDAplicacao(config.getUrl())) {
+			if(!config.isCentral()) {
 				Flyway flyway = Flyway.configure().dataSource(config.getUrl() , config.getUsername() , config.getPassword()).load();
 				flyway.migrate();
 			}
 		}
 	}
-
-	private boolean isBDAplicacao(String url) {
-		String host = url.split("/")[2];
-		return Constantes.BD_DEFAULT.equals(host.split(":")[0]); 
-	}
-
 }

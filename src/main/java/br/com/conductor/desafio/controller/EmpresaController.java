@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.conductor.desafio.comum.exception.DesafioConductorRuntimeException;
+import br.com.conductor.desafio.comum.exception.DesafioConductorNotFoundException;
 import br.com.conductor.desafio.controller.swagger.IEmpresaController;
 import br.com.conductor.desafio.entidade.Empresa;
 import br.com.conductor.desafio.enus.Mensagem;
@@ -39,7 +39,7 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	public List<Empresa> findAll() {
 		List<Empresa> empresas = empresaService.findAll();
 		if(empresas.isEmpty()) {
-			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+			throw new DesafioConductorNotFoundException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
 		} else {
 			return empresas;
 		}
@@ -66,7 +66,7 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	public Empresa findById(@PathVariable("id") Integer id) {
 		Empresa empresa = empresaService.findById(id);
 		if(empresa == null) {
-			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+			throw new DesafioConductorNotFoundException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
 		} else {
 			return empresa;
 		}
@@ -81,6 +81,17 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody Empresa empresa) {
 		empresaService.update(id, empresa);
 		return ok(HttpStatus.OK);
+	}
+	
+	/**
+	 * Metodo para remover uma empresa
+	 * @param id id da empresa
+	 */
+	@Override
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Integer id) {
+		empresaService.delete(id);
+		ok(HttpStatus.OK);
 	}
 
 }

@@ -66,6 +66,16 @@ public class ClienteService extends DesafioConductorService {
 		atualizarDadosClienteBd(clienteBd , cliente);
 		clienteRepository.save(clienteBd);
 	}
+	
+	/**
+	 * Metodo para remover um cliente
+	 * @param id id do cliente
+	 */
+	@Transactional(value = TxType.REQUIRED)
+	public void delete(Integer id) {
+		Cliente clienteBd = hasClienteById(id);
+		clienteRepository.delete(clienteBd);
+	}
 
 	/**
 	 * Metodo para verificar os atributos que serao atualizados na entidade
@@ -123,5 +133,6 @@ public class ClienteService extends DesafioConductorService {
 			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.CLIENTE_JA_CADASTRADO, cpf));
 		}
 	}
+
 
 }

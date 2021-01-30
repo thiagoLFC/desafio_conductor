@@ -58,5 +58,17 @@ public interface IClienteController {
 	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class))))})
 	 ResponseEntity<Object> update(Integer id, Cliente cliente);
+	 
+	 @Operation(summary = "Remover um cliente.", description = "Remove um cliente")
+	    @ApiResponses(value = {
+	        @ApiResponse(responseCode = "200", description = "Operação realizada com sucesso!"),
+	        @ApiResponse(responseCode = "404", description = "Recurso não encontrado", 
+	         content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
+	        @ApiResponse(responseCode = "400", description = "Erro negocial durante operação", 
+         content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoNegocio.class)))),
+	        @ApiResponse(responseCode = "500", description = "Erro interno do sistema", 
+         content = @Content(array = @ArraySchema(schema = @Schema(implementation = br.com.conductor.desafio.controller.swagger.RetornoInterno.class)))) })	
+	 void delete(Integer id);
+
 
 }

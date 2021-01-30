@@ -53,7 +53,7 @@
 						"header": [
 							{
 								"key": "user-permission",
-								"value": "cliente_1",
+								"value": "cliente_2",
 								"description": ""
 							},
 							{
@@ -91,6 +91,23 @@
 							"mode": "raw",
 							"raw": "\n{\n    \"nome\": \"Jejeh\",\n    \"cpf\": \"00040615128\",\n    \"email\": \"44444@4.com\"\n}\n"
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Remover cliente",
+					"request": {
+						"url": "localhost:8080/clientes/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
 						"description": ""
 					},
 					"response": []
@@ -184,6 +201,23 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "Remover empresa",
+					"request": {
+						"url": "localhost:8080/empresas/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "user-permission",
+								"value": "cliente_1",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -205,7 +239,7 @@
 				{
 					"name": "Consultar monitoração por tipo",
 					"request": {
-						"url": "localhost:8080/monitoracoes/CPU",
+						"url": "localhost:8080/monitoracoes/MEMORIA",
 						"method": "GET",
 						"header": [],
 						"body": {},

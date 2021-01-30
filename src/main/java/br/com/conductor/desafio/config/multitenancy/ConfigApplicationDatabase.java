@@ -17,6 +17,7 @@ public class ConfigApplicationDatabase {
 	private String username;
 	private String password;
 	private String driver;
+	private Boolean central;
 
 	public DataSource createDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -57,6 +58,14 @@ public class ConfigApplicationDatabase {
 
 	public void setDriver(String driver) {
 		this.driver = driver;
+	}
+
+	public Boolean isCentral() {
+		return central;
+	}
+
+	public void setCentral(Boolean central) {
+		this.central = central;
 	}
 
 }

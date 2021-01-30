@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.conductor.desafio.comum.exception.DesafioConductorRuntimeException;
+import br.com.conductor.desafio.comum.exception.DesafioConductorNotFoundException;
 import br.com.conductor.desafio.controller.swagger.IMonitoracaoController;
 import br.com.conductor.desafio.entidade.Monitoracao;
 import br.com.conductor.desafio.enus.Mensagem;
@@ -35,7 +35,7 @@ public class MonitoracaoController extends DesafioConductorController implements
 	public Monitoracao findAll() {
 		Monitoracao monitoracao = monitoracaoService.findAll();
 		if(monitoracao.getInformacoes().isEmpty()) {
-			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+			throw new DesafioConductorNotFoundException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
 		} else {
 			return monitoracao;
 		}
@@ -51,7 +51,7 @@ public class MonitoracaoController extends DesafioConductorController implements
 	public Monitoracao findByTipoMonitoracao(@PathVariable("tipo") TipoMonitoracao tipoMonitoracao) {
 		Monitoracao monitoracao = monitoracaoService.findByTipoMonitoracao(tipoMonitoracao);
 		if(monitoracao == null) {
-			throw new DesafioConductorRuntimeException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
+			throw new DesafioConductorNotFoundException(mensagemLoader.getMensagem(Mensagem.RECURSO_NAO_ENCONTRADO));
 		} else {
 			return monitoracao;
 		}
