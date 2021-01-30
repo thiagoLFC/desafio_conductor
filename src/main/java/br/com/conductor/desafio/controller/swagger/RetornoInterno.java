@@ -9,7 +9,7 @@ public class RetornoInterno {
 	@Schema(description = "Codigo do erro de retorno.", example = "500", required = true)
 	private Integer codigo;
 	
-	@Schema(description = "Descrição do erro.", example = "Erro interno no servidor", required = true)
+	@Schema(description = "Descrição do erro.", example = "Erro interno no servidor.", required = true)
 	private String mensagem;
 
 	public RetornoInterno(HttpStatus status, String mensagem) {

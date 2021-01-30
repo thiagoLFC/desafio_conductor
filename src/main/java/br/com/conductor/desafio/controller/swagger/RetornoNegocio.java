@@ -9,7 +9,7 @@ public class RetornoNegocio {
 	@Schema(description = "Codigo do erro de retorno.", example = "400", required = true)
 	private Integer codigo;
 	
-	@Schema(description = "Descrição do erro.", example = "Informação já cadastrada", required = true)
+	@Schema(description = "Descrição do erro.", example = "Erro negocial do sistema.", required = true)
 	private String mensagem;
 
 	public RetornoNegocio(HttpStatus status, String mensagem) {

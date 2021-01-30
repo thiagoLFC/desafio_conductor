@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,10 +49,9 @@ public class ClienteController extends DesafioConductorController implements ICl
 	 * @param cliente Dados do cliente
 	 */
 	@Override
-	@RequestMapping(value = "", method = RequestMethod.POST , consumes = {"application/json"})
-	public ResponseEntity<Object> create(@RequestBody Cliente cliente) {
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public void create(@RequestBody Cliente cliente) {
 		clienteService.create(cliente);
-		return ok(HttpStatus.CREATED);
 	}
 	
 	/**
@@ -77,10 +75,9 @@ public class ClienteController extends DesafioConductorController implements ICl
 	 * @param id id do cliente
 	 */
 	@Override
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT , consumes = {"application/json"})
-	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody Cliente cliente) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public void update(@PathVariable(value = "id") Integer id, @RequestBody Cliente cliente) {
 		clienteService.update(id, cliente);
-		return ok(HttpStatus.OK);
 	}
 	
 	/**

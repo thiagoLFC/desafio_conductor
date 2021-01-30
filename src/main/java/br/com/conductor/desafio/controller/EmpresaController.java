@@ -3,8 +3,6 @@ package br.com.conductor.desafio.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,10 +48,9 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	 * @param empresa Dados da empresa
 	 */
 	@Override
-	@RequestMapping(value = "", method = RequestMethod.POST , consumes = {"application/json"})
-	public ResponseEntity<Object> create(@RequestBody Empresa empresa) {
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public void create(@RequestBody Empresa empresa) {
 		empresaService.create(empresa);
-		return ok(HttpStatus.CREATED);
 	}
 	
 	/**
@@ -77,10 +74,9 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	 * @param id id da empresa
 	 */
 	@Override
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT , consumes = {"application/json"})
-	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody Empresa empresa) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public void update(@PathVariable(value = "id") Integer id, @RequestBody Empresa empresa) {
 		empresaService.update(id, empresa);
-		return ok(HttpStatus.OK);
 	}
 	
 	/**
@@ -91,7 +87,6 @@ public class EmpresaController extends DesafioConductorController implements IEm
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") Integer id) {
 		empresaService.delete(id);
-		ok(HttpStatus.OK);
 	}
 
 }

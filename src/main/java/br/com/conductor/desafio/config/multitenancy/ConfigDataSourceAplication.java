@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+/**
+ * Classe para configurar a criacao dos datasources e sincronizar a criacao das estruturas do banco de dados
+ * @author thiag
+ *
+ */
 @Component
 public class ConfigDataSourceAplication {
 	
